@@ -204,12 +204,18 @@ client.once('ready', () => {
     log.success(`Logged in as ${client.user.tag}`);
     
     // Set custom presence from config
-    const presence = config.bot.presence;
-    client.user.setPresence({
-        status: presence.status,
-        activities: presence.activities.map(activity => ({
-            name: activity.name,
-            type: ActivityType[activity.type]
+    DiscordRichPresence discordPresence;
+    memset(&discordPresence, 0, sizeof(discordPresence));
+    discordPresence.state = "Playing on the EzuSMP";
+    discordPresence.startTimestamp = 1507665886;
+    discordPresence.endTimestamp = 1507665886;
+    discordPresence.largeImageKey = "embedded_cover";
+    discordPresence.largeImageText = "Numbani";
+    discordPresence.smallImageKey = "minecraft_logo_icon_168974_1_";
+    discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+    discordPresence.partyMax = 5;
+    discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+    Discord_UpdatePresence(&discordPresence);
         }))
     });
 
